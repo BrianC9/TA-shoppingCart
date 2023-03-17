@@ -2,7 +2,12 @@ import { createContext } from 'react'
 
 export const FilterContext = createContext(
   {
-    category: 'all',
-    minPrice: 0
+    filters: {
+
+      category: 'all',
+      minPrice: 0
+
+    },
+    setFilters: () => {}
   }
 )
