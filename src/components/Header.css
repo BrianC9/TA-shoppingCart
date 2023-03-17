@@ -1,0 +1,16 @@
+.filters{
+display: flex;
+justify-content: space-around;
+}
+.filters .price-filter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+.filters .category-filter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}

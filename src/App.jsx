@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Header from './components/Header'
 import Products from './components/Products'
 import { products as initialProducts } from './mocks/products.json'
 
@@ -10,17 +11,20 @@ function App () {
   })
 
   function filterProducts (products) {
-    return products.fitler(product => {
+    return products.filter(product => {
       return (
         (product.price >= filters.minPrice) && (filters.category === 'all' || product.category === filters.category)
       )
     })
   }
 
+  const filteredProducts = filterProducts(products)
+  console.log(filterProducts)
+
   return (
     <div className='App'>
-      <h1>Shopping Cart 🛒</h1>
-      <Products products={products} />
+      <Header />
+      <Products products={filteredProducts} />
     </div>
   )
 }
