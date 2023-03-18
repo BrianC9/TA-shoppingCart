@@ -1,9 +1,9 @@
 import './Header.css'
-import React, { useId, useContext } from 'react'
-import { FilterContext } from '../context/FilterContext'
+import React, { useId } from 'react'
+import useFilters from '../hooks/useFilters'
 
 function Filters () {
-  const { filters, setFilters } = useContext(FilterContext)
+  const { filters, setFilters } = useFilters()
 
   const priceFilterId = useId()
   const categoryFilterId = useId()
