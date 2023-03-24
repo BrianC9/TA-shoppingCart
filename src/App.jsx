@@ -5,6 +5,7 @@ import useFilters from './hooks/useFilters'
 import { Footer } from './components/Footer'
 import { FilterContext } from './context/filter'
 import Cart from './components/Cart'
+import { CartContextProvider } from './context/cart'
 function App () {
   const { filterProducts } = useFilters()
 
@@ -14,8 +15,10 @@ function App () {
   return (
     <>
       <Header />
-      <Cart />
-      <Products products={filteredProducts} />
+      <CartContextProvider>
+        <Cart />
+        <Products products={filteredProducts} />
+      </CartContextProvider>
       <Footer />
     </>
   )
