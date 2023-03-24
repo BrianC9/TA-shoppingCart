@@ -3,7 +3,8 @@ import Products from './components/Products'
 import { products as initialProducts } from './mocks/products.json'
 import useFilters from './hooks/useFilters'
 import { Footer } from './components/Footer'
-import { FilterContext } from './context/FilterContext'
+import { FilterContext } from './context/filter'
+import Cart from './components/Cart'
 function App () {
   const { filterProducts } = useFilters()
 
@@ -13,6 +14,7 @@ function App () {
   return (
     <>
       <Header />
+      <Cart />
       <Products products={filteredProducts} />
       <Footer />
     </>
