@@ -16,6 +16,10 @@
   overflow: scroll;
   scroll-behavior: smooth;
 }
+.cart-empty{
+  padding-top: 20px;
+  overflow: hidden;
+}
   .cart img {
     aspect-ratio: 16/9;
     width: 100%;

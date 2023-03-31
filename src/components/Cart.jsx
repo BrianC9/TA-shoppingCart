@@ -13,27 +13,27 @@ function Cart () {
       </label>
       <input id={cartCheckId} type='checkbox' hidden />
       <aside className='cart'>
-        <ul className='cart-products'>
-          {cart.length === 0
-            ? (
-              <p>No items in the cart</p>
-              )
-            : (
-                cart.map((product) => (
-                  <li key={product.id}>
-                    <img src={product.thumbnail} alt={product.title} />
-                    <div>
-                      <strong>{product.title}</strong> - {product.price} €
-                    </div>
-                    <footer>
-                      <button onClick={() => removeFromCart(product)}><RemoveFromCartIcon /></button>
-                      <small>Qty: {product.quantity}</small>
-                      <button onClick={() => addToCart(product)}>+</button>
-                    </footer>
-                  </li>
-                ))
-              )}
-        </ul>
+        {cart.length === 0
+          ? (
+            <p className='cart-empty'>No items in the cart</p>
+            )
+          : (
+            <ul className='cart-products'>
+              {cart.map((product) => (
+                <li key={product.id}>
+                  <img src={product.thumbnail} alt={product.title} />
+                  <div>
+                    <strong>{product.title}</strong> - {product.price} €
+                  </div>
+                  <footer>
+                    <button onClick={() => removeFromCart(product)}><RemoveFromCartIcon /></button>
+                    <small>Qty: {product.quantity}</small>
+                    <button onClick={() => addToCart(product)}>+</button>
+                  </footer>
+                </li>
+              ))}
+            </ul>
+            )}
         <p>
           Total:{' '}
           {cart.reduce(
