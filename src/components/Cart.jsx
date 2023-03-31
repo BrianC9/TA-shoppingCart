@@ -1,16 +1,11 @@
-import { useContext, useId } from 'react'
-import { CartIcon, ClearCartIcon } from './Icons'
+import { useId } from 'react'
+import { CartIcon, ClearCartIcon, RemoveFromCartIcon } from './Icons'
 import './Cart.css'
-import { CartContext } from '../context/cart'
+import { useCart } from '../hooks/useCart'
 function Cart () {
-  const { cart, setCart } = useContext(CartContext)
+  const { cart, clearCart, addToCart, removeFromCart } = useCart()
   const cartCheckId = useId()
-  function handleClearCart () {
-    if (cart.length === 0) return
-    const uSure = window.confirm('Clear cart?')
-    if (!uSure) return
-    setCart([])
-  }
+
   return (
     <>
       <label htmlFor={cartCheckId} className='cart-button'>
@@ -23,26 +18,32 @@ function Cart () {
             ? (
               <p>No items in the cart</p>
               )
-            : cart.map((product) => (
-
-              <li key={product.id}>
-                <img src={product.thumbnail} alt='lapto' />
-                <div>
-                  <strong>{product.title}</strong> - {product.price} €
-                </div>
-                <footer>
-                  <small>Qty: {product.quantity}</small>
-                  <button>+</button>
-                </footer>
-              </li>
-            ))}
-
+            : (
+                cart.map((product) => (
+                  <li key={product.id}>
+                    <img src={product.thumbnail} alt={product.title} />
+                    <div>
+                      <strong>{product.title}</strong> - {product.price} €
+                    </div>
+                    <footer>
+                      <button onClick={() => removeFromCart(product)}><RemoveFromCartIcon /></button>
+                      <small>Qty: {product.quantity}</small>
+                      <button onClick={() => addToCart(product)}>+</button>
+                    </footer>
+                  </li>
+                ))
+              )}
         </ul>
-        <p>Total: {cart.reduce((acc, current) => acc + current.price * current.quantity, 0)}</p>
-        <button onClick={handleClearCart}>
+        <p>
+          Total:{' '}
+          {cart.reduce(
+            (acc, current) => acc + current.price * current.quantity,
+            0
+          )} €
+        </p>
+        <button onClick={clearCart}>
           <ClearCartIcon />
         </button>
-
       </aside>
     </>
   )
